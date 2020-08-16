@@ -33,10 +33,9 @@ public class PaintImage extends JFrame{
 	private JMenuItem saveMenu;
 	public PaintImage() {
 		setLayout(null);
-		
+		image = Imgcodecs.imread("images/opendv-test.jpg");
 		viewSetup();
 		
-		image = Imgcodecs.imread("images/opendv-test.jpg");
 		loadImage(image);
 		imageView.addMouseListener(new MouseAdapter() {
  
@@ -74,7 +73,7 @@ public class PaintImage extends JFrame{
 			}
 			
 		});
-		setSize(640,480);
+		setSize(image.width(),image.height()+20);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -87,7 +86,7 @@ public class PaintImage extends JFrame{
 		
 		imageData = mob.toArray();
 		
-		ImageIcon icon = new ImageIcon(imageData);
+		final ImageIcon icon = new ImageIcon(imageData);
 		imageView.setIcon(icon);
 	}
 
@@ -95,7 +94,8 @@ public class PaintImage extends JFrame{
 	private void viewSetup() {
 		
 		imageView = new JLabel();
-		imageView.setBounds(0, 20, 640,480);
+		imageView.setBounds(0,20,image.width(),image.height());
+		System.out.println(image.height() + " " + image.width());
 		add(imageView);
 		
 		menuBar = new JMenuBar();
