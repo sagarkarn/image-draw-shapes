@@ -15,7 +15,9 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.Point;
+import org.opencv.core.RotatedRect;
 import org.opencv.core.Scalar;
+import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
@@ -62,11 +64,20 @@ public class PaintImage extends JFrame{
 				tempImage = image.clone();
 				final Point point = new Point(e.getX(),e.getY());
 				
-				Imgproc.rectangle(tempImage, origin, point, new Scalar(0, 0, 255), 2);
+//				Imgproc.rectang
+				
+//				Imgproc.rectangle(tempImage, origin, point, new Scalar(0, 0, 255), -1);
 				
 //				Imgproc.line(tempImage, origin, point, new Scalar(0,255,0), 1);
 //				
 //				Imgproc.circle(tempImage, origin, 10, new Scalar(255,0,0),1);
+				
+				double x = (int) Math.abs(point.x - origin.x);
+				double y = (int) Math.abs(point.y - origin.y);
+				
+				Imgproc.ellipse(tempImage, new RotatedRect(origin, new Size(x,y), 0), new Scalar(0, 0, 255),6);
+				
+				
 				
 				loadImage(tempImage);
 				
