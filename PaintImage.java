@@ -66,16 +66,18 @@ public class PaintImage extends JFrame{
 				
 //				Imgproc.rectang
 				
-//				Imgproc.rectangle(tempImage, origin, point, new Scalar(0, 0, 255), -1);
+//				Imgproc.rectangle(tempImage, origin, point, new Scalar(0, 0, 255), 5);
 				
-//				Imgproc.line(tempImage, origin, point, new Scalar(0,255,0), 1);
+//				Imgproc.line(tempImage, origin, point, new Scalar(0,255,0), 2);
 //				
-//				Imgproc.circle(tempImage, origin, 10, new Scalar(255,0,0),1);
+				double distance = Math.sqrt(Math.pow((point.x-origin.x),2) + Math.pow(point.y-origin.y,2));
 				
-				double x = (int) Math.abs(point.x - origin.x);
-				double y = (int) Math.abs(point.y - origin.y);
+//				Imgproc.circle(tempImage, origin, (int) distance, new Scalar(255,0,0),5);
 				
-				Imgproc.ellipse(tempImage, new RotatedRect(origin, new Size(x,y), 0), new Scalar(0, 0, 255),6);
+				double x = Math.abs(point.x - origin.x);
+				double y = Math.abs(point.y - origin.y);
+				
+				Imgproc.ellipse(tempImage, new RotatedRect(origin, new Size(x*2,y*2), 0), new Scalar(0, 0, 255),6);
 				
 				
 				
